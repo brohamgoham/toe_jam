@@ -30,8 +30,8 @@ fn main() {
             ..default()
         }))
         .insert_resource(ClearColor(Color::rgb(0.1, 0.1, 0.1)))
+        .add_systems((move_player, mouse_scrolling, title))
         .add_startup_systems((setup, spawn_player))
-        .add_system(move_player)
         .run();
 }
 
