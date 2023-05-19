@@ -1,8 +1,10 @@
 use bevy::{
-    asset::*,
+    asset::AssetPathId,
     prelude::*,
     render::camera::ScalingMode,
+    text,
 };
+use bevy_text::{Text, TextSection, TextStyle};
 
 #[derive(Component)]
 pub struct Player;
@@ -13,7 +15,9 @@ fn main() {
             primary_window: Some(Window {
                 fit_canvas_to_parent: true,
                 prevent_default_event_handling: false,
-                ..default()
+                resizable: true,
+                title: "MoHam ToeJam".to_string(),
+
             }),
             ..default()
         }))
@@ -73,14 +77,18 @@ fn move_player(keys: Res<Input<KeyCode>>, mut player_query: Query<&mut Transform
 fn title(mut commands: Commands) {
     commands.spawn(TextBundle {
         text: Text {
-            sections: vec![TextSection {
-                value: "Hello, Bevy!".to_string(),
-                style: TextStyle {
-                    font_size: 40.0,
-                    color: Color::WHITE,
-                },
-            }],
-            ..Default::default()
+            sections: vec![
+                TextSection {
+                    value: "Welcome to Toe Jame".to_string(),
+                    style: TextStyle {
+                        font: Handle::default(),
+                        font_size: 40.0,
+                        color: Color::WHITE,
+                    },
+                }
+            ],
+            alignment: TextAlignment::Center,
+            linebreak_behaviour: bevy_text::BreakLineOn::AnyCharacter,
         },
         ..Default::default()
     });
