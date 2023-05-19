@@ -2,7 +2,7 @@ use bevy::{
     asset::AssetPathId,
     prelude::*,
     render::camera::ScalingMode,
-    text,
+    text, window::WindowMode,
 };
 use bevy_text::{Text, TextSection, TextStyle};
 
@@ -17,7 +17,7 @@ fn main() {
                 prevent_default_event_handling: false,
                 resizable: true,
                 title: "MoHam ToeJam".to_string(),
-
+                ..default()
             }),
             ..default()
         }))
